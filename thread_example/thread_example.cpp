@@ -1,20 +1,21 @@
 #include "systemc.h"
 
-SC_MODULE(rslatch)
+SC_MODULE(rsff)
 {
     sc_in<bool> S;
     sc_in<bool> R;
     sc_out<bool> Q;
     sc_out<bool> N;
 
-    SC_CTOR(rslatch) : S("S"), R("R"), Q("Q"), N("N")
+    SC_CTOR(rsff) : S("S"), R("R"), Q("Q"), N("N")
     {
-        SC_METHOD(process);
+        SC_THREAD(process);
         sensitive << S << R << Q << N;
     }
 
     void process()
     {
+        std::cout << "PROCESS" << std::endl;
         Q.write(!(R.read()||N.read())); // Nor Gate
         N.write(!(S.read()||Q.read())); // Nor Gate
     }
@@ -27,7 +28,7 @@ SC_MODULE(toplevel)
     sc_signal<bool> Qsig;
     sc_signal<bool> Nsig;
 
-    rslatch rs;
+    rsff rs;
     sc_time currentTime;
     unsigned long long currentDelta;
 
