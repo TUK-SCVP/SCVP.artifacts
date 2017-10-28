@@ -17,8 +17,8 @@ SC_MODULE(producer)
     SC_CTOR(producer) : counter(1)
     {
         SC_THREAD(process);
-        sensitive << clk.pos();
         dont_initialize();
+        sensitive << clk.pos();
     }
 
   private:

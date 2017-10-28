@@ -11,11 +11,11 @@ void consumer::process()
     if(fifo_port->nb_read(value) == true)
     {
         std::cout << "@" << sc_time_stamp()
-                  << ": Consumed" << value << std::endl;
+                  << " CONSUMER: Consumed " << value << std::endl;
     }
     else
     {
         std::cout << "@" << sc_time_stamp()
-                  << ": nothing to consume" << std::endl;
+                  << " CONSUMER: nothing to consume" << std::endl;
     }
 }

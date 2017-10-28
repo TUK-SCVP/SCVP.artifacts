@@ -11,12 +11,12 @@ void producer::process()
     if(fifo_port->nb_write(value))
     {
         std::cout << "@" << sc_time_stamp()
-                  << ": Produced " << value << std::endl;
+                  << " PRODUCER: Produced " << value << std::endl;
     }
     else
     {
         std::cout << "@" << sc_time_stamp()
-                  << ": fifo is full" << std::endl;
+                  << " PRODUCER: fifo is full" << std::endl;
         counter--;
     }
 

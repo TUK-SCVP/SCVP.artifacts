@@ -16,8 +16,8 @@ SC_MODULE(consumer)
     SC_CTOR(consumer)
     {
         SC_METHOD(process);
-        sensitive << clk.pos();
         dont_initialize();
+        sensitive << clk.pos();
     }
 
   private:

@@ -9,7 +9,7 @@ void producer::process()
 
         fifo_port->write(value);
         std::cout << "@" << sc_time_stamp()
-                  << ": Produced " << value << std::endl;
+                  << " PRODUCER: Produced " << value << std::endl;
 
         if(counter == 20)
         {

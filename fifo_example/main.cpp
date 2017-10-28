@@ -1,6 +1,5 @@
-#include <systemc>
+#include <systemc.h>
 #include <iostream>
-#include "utils.h"
 #include "producer.h"
 #include "consumer.h"
 
@@ -37,7 +36,7 @@ int sc_main(int argc, char* argv[])
 
     sc_start();
 
-    channel.dump();
+    //channel.dump();
 
     sc_close_vcd_trace_file(wf);
     return 0;
