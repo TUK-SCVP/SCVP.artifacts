@@ -1,4 +1,5 @@
 #include "systemc.h"
+#include <unistd.h>
 
 SC_MODULE(rslatch)
 {
@@ -76,15 +77,12 @@ SC_MODULE(toplevel)
     void process()
     {
         // Start in Reset State
-        waitAndPrint(SC_ZERO_TIME);
-        waitAndPrint(SC_ZERO_TIME);
-        waitAndPrint(SC_ZERO_TIME);
-        waitAndPrint(SC_ZERO_TIME);
-        waitAndPrint(SC_ZERO_TIME);
-        waitAndPrint(SC_ZERO_TIME);
-        waitAndPrint(SC_ZERO_TIME);
-        waitAndPrint(SC_ZERO_TIME);
-        waitAndPrint(SC_ZERO_TIME);
+
+        while(true)
+        {
+            usleep(100000);
+            waitAndPrint(SC_ZERO_TIME);
+        }
 
         wait();
 
