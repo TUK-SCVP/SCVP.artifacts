@@ -1,4 +1,4 @@
-TARGET = fifo_example
+TARGET = kpn_example
 
 TEMPLATE = app
 CONFIG += console
@@ -17,6 +17,8 @@ isEmpty(systemc_target_arch) {
 unix:!macx {
     systemc_target_arch = linux64
     QMAKE_CXXFLAGS += -std=c++11 -O0 -g
+    QMAKE_RPATHDIR += $${systemc_home}/lib-$${systemc_target_arch}
+    QMAKE_CXXFLAGS += -isystem $${systemc_home}/include
 }
 
 macx: {
