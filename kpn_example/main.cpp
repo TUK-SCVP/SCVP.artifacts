@@ -4,7 +4,7 @@
 
 using namespace std;
 
-int sc_main(int argc, char* argv[])
+int sc_main(int __attribute__((unused)) argc, char __attribute__((unused)) *argv[])
 
 {
     kpn kahn("kpn");

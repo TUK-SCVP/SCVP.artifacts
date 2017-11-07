@@ -32,7 +32,7 @@ void kpn::kpn_y() // consumes
     while(true)
     {
         wait(sc_time(20,SC_NS));
-        double value = y.read();
+        double __attribute__((unused)) value = y.read();
     }
 }
 
