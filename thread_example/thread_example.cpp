@@ -1,13 +1,13 @@
 #include "systemc.h"
 
-SC_MODULE(rsff)
+SC_MODULE(rslatch)
 {
     sc_in<bool> S;
     sc_in<bool> R;
     sc_out<bool> Q;
     sc_out<bool> N;
 
-    SC_CTOR(rsff) : S("S"), R("R"), Q("Q"), N("N")
+    SC_CTOR(rslatch) : S("S"), R("R"), Q("Q"), N("N")
     {
         SC_THREAD(process);
         sensitive << S << R << Q << N;
@@ -16,19 +16,14 @@ SC_MODULE(rsff)
     void process()
     {
         // For SC_THREADs it is important that they have loops and wait
-        // statements, otherwise it dies!
-//#define loop
-#ifdef loop
+        // statements, otherwise they die!
         while(true)
         {
             wait();
-#endif
-            std::cout << "PROCESS" << std::endl;
+            std::cout << "PROCESS called" << std::endl;
             Q.write(!(R.read()||N.read())); // Nor Gate
             N.write(!(S.read()||Q.read())); // Nor Gate
-#ifdef loop
         }
-#endif;
     }
 };
 
@@ -39,7 +34,7 @@ SC_MODULE(toplevel)
     sc_signal<bool> Qsig;
     sc_signal<bool> Nsig;
 
-    rsff rs;
+    rslatch rs;
     sc_time currentTime;
     unsigned long long currentDelta;
 
@@ -118,7 +113,8 @@ SC_MODULE(toplevel)
     }
 };
 
-int sc_main (int __attribute__((unused)) sc_argc, char __attribute__((unused)) *sc_argv[])
+int sc_main (int __attribute__((unused)) sc_argc,
+             char __attribute__((unused)) *sc_argv[])
 {
     std::cout << "\nT\t\tS\tR\tQ\tN" << std::endl;
     toplevel t("t");

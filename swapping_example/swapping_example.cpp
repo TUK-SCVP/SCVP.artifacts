@@ -125,7 +125,8 @@ SC_MODULE(toplevel)
     }
 };
 
-int sc_main (int __attribute__((unused)) sc_argc, char __attribute__((unused)) *sc_argv[])
+int sc_main (int __attribute__((unused)) sc_argc,
+             char __attribute__((unused)) *sc_argv[])
 {
     std::cout << "\nT\t\tA\tB\tC\tD\tE\tF" << std::endl;
     toplevel t("t");
