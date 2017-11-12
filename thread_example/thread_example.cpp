@@ -15,9 +15,20 @@ SC_MODULE(rsff)
 
     void process()
     {
-        std::cout << "PROCESS" << std::endl;
-        Q.write(!(R.read()||N.read())); // Nor Gate
-        N.write(!(S.read()||Q.read())); // Nor Gate
+        // For SC_THREADs it is important that they have loops and wait
+        // statements, otherwise it dies!
+//#define loop
+#ifdef loop
+        while(true)
+        {
+            wait();
+#endif
+            std::cout << "PROCESS" << std::endl;
+            Q.write(!(R.read()||N.read())); // Nor Gate
+            N.write(!(S.read()||Q.read())); // Nor Gate
+#ifdef loop
+        }
+#endif;
     }
 };
 

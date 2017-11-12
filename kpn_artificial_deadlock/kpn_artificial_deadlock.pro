@@ -2,9 +2,8 @@ TARGET = artificial_deadlock
 
 include(../common.pri)
 
-SOURCES += main.cpp \
-    kpn.cpp
+SOURCES += main.cpp
+SOURCES += kpn.cpp 
 
-HEADERS += \
-    kpn.h \
-    utils.h
+HEADERS += kpn.h 
+HEADERS += utils.h

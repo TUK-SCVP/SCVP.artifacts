@@ -2,6 +2,7 @@
 
 SC_MODULE(toplevel)
 {
+  public:
     sc_signal<int> A;
     sc_signal<int> B;
 
@@ -20,7 +21,9 @@ SC_MODULE(toplevel)
 
     SC_CTOR(toplevel) : A("A"), B("B")
     {
-        SC_METHOD(method1); // With initialization: method is called at the beginning of the simulation
+        SC_METHOD(method1);
+
+        // With initialization: method is called at the beginning of the simulation
         sensitive << startMethod1;
 
         SC_THREAD(thread1); // Without initialization: thread is not called at the beginning of the simulation
