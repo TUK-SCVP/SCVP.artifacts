@@ -3,7 +3,7 @@
 #include "producer.h"
 #include "consumer.h"
 
-int sc_main(int argc, char* argv[])
+int sc_main(int __attribute__((unused)) argc, char __attribute__((unused)) *argv[])
 {
     // Setup Clocks
     sc_clock clk1("clk1", 1, SC_NS, 0.5, 0, SC_NS, true);
