@@ -1,7 +1,8 @@
 TEMPLATE = subdirs
 
-SUBDIRS += delta_delay \
-    not_chain
+SUBDIRS += delta_delay
+SUBDIRS += not_chain
+SUBDIRS += interfaces_ports
 SUBDIRS += kpn_example
 SUBDIRS += kpn_artificial_deadlock
 SUBDIRS += thread_example
