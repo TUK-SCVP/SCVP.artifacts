@@ -1,6 +1,8 @@
 TEMPLATE = subdirs
 
-SUBDIRS += delta_delay
+SUBDIRS += delta_delay \
+    datatypes
+SUBDIRS += mutex_example
 SUBDIRS += not_chain
 SUBDIRS += interfaces_ports
 SUBDIRS += custom_signal
