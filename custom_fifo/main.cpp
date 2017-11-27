@@ -10,6 +10,11 @@ class SimpleFIFOInterface : public sc_interface
     public:
     virtual T read() = 0;
     virtual void write(T) = 0;
+    // Just for Debug
+    virtual void printFIFO()
+    {
+        cout << "Warning: Debug Function Not Implemented" << endl;
+    }
 };
 
 template <class T>
@@ -68,7 +73,7 @@ class SimpleFIFO : public SimpleFIFOInterface<T>
 
 SC_MODULE(PRODUCER)
 {
-    sc_port< SimpleFIFO<int> > master;
+    sc_port< SimpleFIFOInterface<int> > master;
 
     SC_CTOR(PRODUCER)
     {
@@ -89,7 +94,7 @@ SC_MODULE(PRODUCER)
 
 SC_MODULE(CONSUMER)
 {
-    sc_port< SimpleFIFO<int> > slave;
+    sc_port< SimpleFIFOInterface<int> > slave;
 
     SC_CTOR(CONSUMER)
     {
@@ -115,6 +120,8 @@ int sc_main(int __attribute__((unused)) argc,
     PRODUCER pro1("pro1");
     CONSUMER con1("con1");
     SimpleFIFO<int> channel(4);
+
+    sc_signal<int> foo;
 
     pro1.master.bind(channel);
     con1.slave.bind(channel);
