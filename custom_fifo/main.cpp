@@ -57,7 +57,7 @@ class SimpleFIFO : public SimpleFIFOInterface<T>
 
     void printFIFO()
     {
-        int n = fifo.size();
+        unsigned int n = fifo.size();
 
         std::cout << "SimpleFIFO (" << maxSize << ") " << "[";
         for(unsigned int i = 0; i < n; i++) {

@@ -7,8 +7,8 @@ SC_MODULE(clockGenerator)
 {
     public:
     sc_out<bool> clk;
-    bool value;
     sc_time period;
+    bool value;
 
     SC_HAS_PROCESS(clockGenerator);
     clockGenerator(const sc_module_name &name, sc_time period) :

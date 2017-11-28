@@ -27,8 +27,9 @@ SC_MODULE(not_chain)
     sc_signal<bool> h1,h2;
 
     SC_CTOR(not_chain):
+        A("A"), Z("Z"),
         not1("not1"), not2("not2"), not3("not3"),
-        A("A"), Z("Z"), h1("h1"), h2("h2")
+        h1("h1"), h2("h2")
     {
         //        h1    h2
         // A--NOT1--NOT2--NOT3--Z
@@ -57,4 +58,5 @@ int sc_main (int __attribute__((unused)) sc_argc,
     sc_start();
 
     std::cout << bar.read() << std::endl;
+    return 0;
 }
