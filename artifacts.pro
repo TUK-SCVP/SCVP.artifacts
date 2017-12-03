@@ -1,7 +1,9 @@
 TEMPLATE = subdirs
 
-SUBDIRS += delta_delay \
-    datatypes
+SUBDIRS += delta_delay
+SUBDIRS += sc_event_and_queue
+SUBDIRS += datatypes
+SUBDIRS += event_finder
 SUBDIRS += mutex_example
 SUBDIRS += not_chain
 SUBDIRS += interfaces_ports
