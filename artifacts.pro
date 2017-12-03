@@ -1,7 +1,9 @@
 TEMPLATE = subdirs
 
-SUBDIRS += delta_delay \
-    multiports
+SUBDIRS += delta_delay
+SUBDIRS += multiports
+SUBDIRS += portarrays
+SUBDIRS += dynamic_processes
 SUBDIRS += sc_event_and_queue
 SUBDIRS += datatypes
 SUBDIRS += event_finder

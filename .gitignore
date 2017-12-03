@@ -22,3 +22,10 @@ swapping_example/swapping_example
 thread_example/thread_example
 artifacts.pro.user.3748faf
 .qmake.stash
+dynamic_processes/dynamic_processes
+event_finder/custom_fifo
+multiports/custom_signal
+multiports/multiports
+non-determinism/
+portarrays/custom_signal
+portarrays/portarrays

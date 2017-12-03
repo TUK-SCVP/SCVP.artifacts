@@ -1,4 +1,4 @@
-TARGET = multiports
+TARGET = dynamic_processes
 
 include(../common.pri)
 

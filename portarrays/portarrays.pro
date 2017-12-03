@@ -1,4 +1,4 @@
-TARGET = multiports
+TARGET = portarrays
 
 include(../common.pri)
 

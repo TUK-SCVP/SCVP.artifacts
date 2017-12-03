@@ -25,7 +25,7 @@ SC_MODULE(eventTester)
 
     void sensitiveProcess()
     {
-        cout << "@" << sc_time_stamp() << endl;
+        cout << "EVENT: @" << sc_time_stamp() << endl;
     }
 };
 
@@ -45,13 +45,14 @@ SC_MODULE(eventQueueTester)
     {
        wait(100,SC_NS);
        triggerEventQueue.notify(10,SC_NS);
-       triggerEventQueue.notify(20,SC_NS); // Will be ignored
-       triggerEventQueue.notify(30,SC_NS); // Will be ignored
+       triggerEventQueue.notify(20,SC_NS); // Will not be ignored
+       triggerEventQueue.notify(40,SC_NS); // Will not be ignored
+       triggerEventQueue.notify(30,SC_NS); // Will not be ignored
     }
 
     void sensitiveProcess()
     {
-        cout << "@" << sc_time_stamp() << endl;
+        cout << "QUEUE: @" << sc_time_stamp() << endl;
     }
 };
 

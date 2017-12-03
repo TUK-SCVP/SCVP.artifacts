@@ -28,10 +28,11 @@ SC_MODULE(module)
         std::cout << "Write to port 2" << std::endl;
         wait(1,SC_NS);
 
-        for(int i; i < port.size(); i++)
+        for(int i=0; i < port.size(); i++)
         {
            port[i]->write(2);
            std::cout << "Write to port " << i << std::endl;
+           wait(1,SC_NS);
         }
     }
 
@@ -41,11 +42,11 @@ int sc_main(int __attribute__((unused)) argc,
             char __attribute__((unused)) *argv[])
 {
     module m("m");
-    sc_fifo<int> f1, f2;//, f3;
+    sc_fifo<int> f1, f2, f3;
 
     m.port.bind(f1);
     m.port.bind(f2);
-    //m.port.bind(f3);
+    m.port.bind(f3);
 
     sc_start();
     return 0;
