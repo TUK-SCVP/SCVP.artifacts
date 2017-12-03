@@ -29,3 +29,4 @@ multiports/multiports
 non-determinism/
 portarrays/custom_signal
 portarrays/portarrays
+callbacks/callbacks

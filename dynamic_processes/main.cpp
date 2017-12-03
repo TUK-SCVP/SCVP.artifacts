@@ -16,7 +16,7 @@ SC_MODULE(module)
     {
         wait(10,SC_NS);
 
-        cout << "Parent creates Chicld" << endl;
+        cout << "Parent creates Child" << endl;
 
         sc_process_handle handle = sc_spawn(
             sc_bind(&module::childProcess, this, 5 /* argument */)
