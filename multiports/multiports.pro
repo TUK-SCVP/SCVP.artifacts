@@ -1,4 +1,4 @@
-TARGET = event_finder
+TARGET = custom_signal
 
 include(../common.pri)
 
