@@ -1,6 +1,7 @@
 TEMPLATE = subdirs
 
 SUBDIRS += delta_delay
+SUBDIRS += reporting
 SUBDIRS += callbacks
 SUBDIRS += multiports
 SUBDIRS += portarrays

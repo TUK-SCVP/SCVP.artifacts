@@ -30,3 +30,10 @@ non-determinism/
 portarrays/custom_signal
 portarrays/portarrays
 callbacks/callbacks
+callbacks/callbacks.app/
+reporting/output.log
+reporting/reporting
+state_explosion/machine.4.pdf
+state_explosion/machine.8.dot
+state_explosion/machine.8.png
+state_explosion/machine.png
