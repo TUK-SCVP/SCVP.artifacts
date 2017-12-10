@@ -1,6 +1,7 @@
 TEMPLATE = subdirs
 
 SUBDIRS += delta_delay
+SUBDIRS += tlm_lt_initiator_target
 SUBDIRS += reporting
 SUBDIRS += callbacks
 SUBDIRS += multiports
