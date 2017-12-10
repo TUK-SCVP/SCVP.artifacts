@@ -38,3 +38,4 @@ state_explosion/machine.8.dot
 state_explosion/machine.8.png
 state_explosion/machine.png
 tlm_lt_initiator_target/tlm_lt_initiator_target
+custom_tlm/custom_tlm

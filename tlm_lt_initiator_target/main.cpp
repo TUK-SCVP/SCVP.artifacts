@@ -88,15 +88,15 @@ class exampleTarget : sc_module, tlm::tlm_fw_transport_if<>
 
         if(trans.get_command() == tlm::TLM_WRITE_COMMAND)
         {
-            memcpy(mem+trans.get_address(),  // destination
-                   trans.get_data_ptr(),     // source
-                   trans.get_data_length()); // size
+            memcpy(&mem[trans.get_address()], // destination
+                   trans.get_data_ptr(),      // source
+                   trans.get_data_length());  // size
         }
         else // (trans.get_command() == tlm::TLM_READ_COMMAND)
         {
-            memcpy(trans.get_data_ptr(),     // destination
-                   mem+trans.get_address(),  // source
-                   trans.get_data_length()); // size
+            memcpy(trans.get_data_ptr(),      // destination
+                   &mem[trans.get_address()], // source
+                   trans.get_data_length());  // size
         }
 
         delay = delay + sc_time(40, SC_NS);
