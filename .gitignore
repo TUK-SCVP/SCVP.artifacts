@@ -42,3 +42,4 @@ custom_tlm/custom_tlm
 tlm_lt_initiator_interconnect_target/tlm_lt_initiator_interconnect_target
 tlm_quantum_keeper/tlm_quantum_keeper
 tlm_lt_dmi/tlm_lt_dmi
+tlm_lt_debug_transport/tlm_lt_debug_transport

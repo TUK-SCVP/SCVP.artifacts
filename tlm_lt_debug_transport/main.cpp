@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include <systemc.h>
 #include <tlm.h>
 
@@ -77,6 +78,38 @@ class exampleInitiator: sc_module, tlm::tlm_bw_transport_if<>
             std::cout << "@" << sc_time_stamp() << "\tRead Data: "
                       << (unsigned int)data << std::endl;
         }
+        // End of simulation:
+        dumpMemory();
+    }
+
+    void dumpMemory()
+    {
+        std::cout << std::endl;
+        std::cout << "Dump Memory Content of Target:" << std::endl;
+        std::cout << std::endl;
+        unsigned char buffer[64];
+
+        tlm::tlm_generic_payload trans;
+        trans.set_address(0);
+        trans.set_read();
+        trans.set_data_length(64);
+        trans.set_data_ptr(buffer);
+
+        unsigned int n = iSocket->transport_dbg(trans);
+
+        for(unsigned int i = 0; i < n; i++)
+        {
+            std::cout << std::hex
+                      << std::setfill('0')
+                      << std::setw(2)
+                      << (unsigned int)buffer[i];
+
+            if((i+1)%8 == 0)
+            {
+                std::cout << std::endl;
+            }
+        }
+        std::cout << std::endl;
     }
 };
 
@@ -146,8 +179,26 @@ class exampleTarget : sc_module, tlm::tlm_fw_transport_if<>
     // Dummy method
     unsigned int transport_dbg(tlm::tlm_generic_payload& trans)
     {
-        SC_REPORT_FATAL(this->name(),"transport_dbg is not implemented");
-        return 0;
+        if (trans.get_address() >= 1024)
+        {
+             return 0;
+        }
+
+        if(trans.get_command() == tlm::TLM_WRITE_COMMAND)
+        {
+            memcpy(&mem[trans.get_address()], // destination
+                   trans.get_data_ptr(),      // source
+                   trans.get_data_length());  // size
+        }
+        else // (trans.get_command() == tlm::TLM_READ_COMMAND)
+        {
+            memcpy(trans.get_data_ptr(),      // destination
+                   &mem[trans.get_address()], // source
+                   trans.get_data_length());  // size
+        }
+
+        return trans.get_data_length();
+
     }
 
 };
