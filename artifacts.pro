@@ -1,6 +1,10 @@
 TEMPLATE = subdirs
 
 SUBDIRS += delta_delay
+SUBDIRS += tlm_memory_manager
+SUBDIRS += tlm_protocol_checker
+SUBDIRS += tlm_simple_sockets
+SUBDIRS += tlm_at_1
 SUBDIRS += tlm_lt_debug_transport
 SUBDIRS += tlm_lt_dmi
 SUBDIRS += tlm_lt_initiator_interconnect_target

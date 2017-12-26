@@ -40,6 +40,7 @@ class exampleInitiator: sc_module, tlm::tlm_bw_transport_if<>
             unsigned char data = rand();
             trans.set_address(i);
             trans.set_data_length(1);
+            trans.set_streaming_width(1);
             trans.set_command(tlm::TLM_WRITE_COMMAND);
             trans.set_data_ptr(&data);
             trans.set_response_status( tlm::TLM_INCOMPLETE_RESPONSE );
@@ -62,9 +63,10 @@ class exampleInitiator: sc_module, tlm::tlm_bw_transport_if<>
             unsigned char data;
             trans.set_address(i);
             trans.set_data_length(1);
+            trans.set_streaming_width(1);
             trans.set_command(tlm::TLM_READ_COMMAND);
             trans.set_data_ptr(&data);
-            trans.set_response_status( tlm::TLM_INCOMPLETE_RESPONSE );
+            trans.set_response_status(tlm::TLM_INCOMPLETE_RESPONSE);
             sc_time delay = sc_time(0, SC_NS);
 
             iSocket->b_transport(trans, delay);
