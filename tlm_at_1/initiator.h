@@ -6,6 +6,7 @@
 #include "tlm_utils/peq_with_cb_and_phase.h"
 #include "../tlm_memory_manager/memory_manager.h"
 #include "../tlm_protocol_checker/tlm2_base_protocol_checker.h"
+#include "util.h"
 
 using namespace sc_core;
 using namespace sc_dt;
@@ -19,7 +20,7 @@ class Initiator: sc_module, tlm::tlm_bw_transport_if<>
     // TLM-2 socket, defaults to 32-bits wide, base protocol
     tlm::tlm_initiator_socket<> socket;
 
-    private:
+    protected:
     MemoryManager mm;
     int data[16];
     tlm::tlm_generic_payload* requestInProgress;
@@ -77,7 +78,7 @@ class Initiator: sc_module, tlm::tlm_bw_transport_if<>
             phase = tlm::BEGIN_REQ;
 
             // Timing annot. models processing time of initiator prior to call
-            delay = sc_time(10, SC_NS);
+            delay = randomDelay();
 
             cout << "\033[1;31m"
                  << "(I) @"  << setfill(' ') << setw(12) << sc_time_stamp()
@@ -93,7 +94,7 @@ class Initiator: sc_module, tlm::tlm_bw_transport_if<>
             status = socket->nb_transport_fw( *trans, phase, delay );
 
             // Check value returned from nb_transport_fw
-            if (status == tlm::TLM_UPDATED) // [2.0]
+            if (status == tlm::TLM_UPDATED) // [2.0] or [4.0]
             {
                 // The timing annotation must be honored
                 peq.notify(*trans, phase, delay);
@@ -113,7 +114,7 @@ class Initiator: sc_module, tlm::tlm_bw_transport_if<>
             // In the case of TLM_ACCEPTED [1.1] we
             // will recv. a BW call in the future [1.2, 1.4]
 
-            wait( sc_time(5, SC_NS) );
+            wait(randomDelay());
         }
     }
 
@@ -154,7 +155,7 @@ class Initiator: sc_module, tlm::tlm_bw_transport_if<>
 
             // Send final phase transition to target
             tlm::tlm_phase fw_phase = tlm::END_RESP;
-            sc_time delay = sc_time(5, SC_NS);
+            sc_time delay = sc_time(randomDelay());
             // [1.6]
             socket->nb_transport_fw( trans, fw_phase, delay ); // Ignore return
 

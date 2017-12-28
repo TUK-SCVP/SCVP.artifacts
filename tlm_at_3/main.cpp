@@ -6,12 +6,13 @@
 #include "../tlm_protocol_checker/tlm2_base_protocol_checker.h"
 #include "../tlm_at_1/target.h"
 #include "../tlm_at_1/initiator.h"
+#include "../tlm_at_1/util.h"
 
 using namespace sc_core;
 using namespace sc_dt;
 using namespace std;
 
-class EarlyTarget: public Target // According to [3.0]
+class EarlyTarget: public Target
 {
     public:
     SC_HAS_PROCESS(EarlyTarget);
@@ -25,12 +26,11 @@ class EarlyTarget: public Target // According to [3.0]
                                                sc_time& delay)
     {
         // Lets do early completion here (No PEQ!):
-        Target::executeTransaction(trans);
-        delay += sc_time(40, SC_NS);
-
         cout << "\033[1;35m"
            << "(T) @"  << setfill(' ') << setw(12) << sc_time_stamp()
            << ": " << "Early Completion \033[0m" << endl;
+        Target::executeTransaction(trans);
+        delay += randomDelay();
         return tlm::TLM_COMPLETED; // [3.0]
     }
 };

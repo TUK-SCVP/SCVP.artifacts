@@ -7,6 +7,7 @@
 #include "tlm_utils/peq_with_cb_and_phase.h"
 #include "../tlm_memory_manager/memory_manager.h"
 #include "../tlm_protocol_checker/tlm2_base_protocol_checker.h"
+#include "util.h"
 
 using namespace sc_core;
 using namespace sc_dt;
@@ -17,7 +18,7 @@ class Target: sc_module, tlm::tlm_fw_transport_if<>
     public:
     tlm::tlm_target_socket<> socket;
 
-    private:
+    protected:
     tlm::tlm_generic_payload* transactionInProgress;
     sc_event targetDone;
     bool responseInProgress;
@@ -128,7 +129,7 @@ class Target: sc_module, tlm::tlm_fw_transport_if<>
 
         // Queue the acceptance and the response with the appropriate latency
         bw_phase = tlm::END_REQ;
-        delay = sc_time(20, SC_NS); // Accept delay
+        delay = randomDelay(); // Accept delay
 
         tlm::tlm_sync_enum status;
         status = socket->nb_transport_bw( trans, bw_phase, delay ); // [1.2]
@@ -136,7 +137,7 @@ class Target: sc_module, tlm::tlm_fw_transport_if<>
         // initiator cannot terminate transaction at this point
 
         // Queue internal event to mark beginning of response
-        delay = delay + sc_time(40, SC_NS); // Latency
+        delay = delay + randomDelay(); // Latency
         targetDone.notify( delay );
 
         assert(transactionInProgress == 0);
