@@ -43,3 +43,10 @@ tlm_lt_initiator_interconnect_target/tlm_lt_initiator_interconnect_target
 tlm_quantum_keeper/tlm_quantum_keeper
 tlm_lt_dmi/tlm_lt_dmi
 tlm_lt_debug_transport/tlm_lt_debug_transport
+tlm_simple_sockets/tlm_simple_sockets
+tlm_memory_manager/tlm_memory_manager
+tlm_memory_manager/tlm_memory_manager.app/
+tlm_at_1/tlm_at_1
+tlm_at_2/tlm_at_2
+tlm_at_3/tlm_at_3
+tlm_at_4/tlm_at_4
