@@ -46,7 +46,7 @@ using namespace sc_core;
 using namespace sc_dt;
 using namespace std;
 
-class Target: sc_module, tlm::tlm_fw_transport_if<>
+class Target: public sc_module, public tlm::tlm_fw_transport_if<>
 {
     public:
     tlm::tlm_target_socket<> socket;
@@ -239,7 +239,7 @@ class Target: sc_module, tlm::tlm_fw_transport_if<>
              << *reinterpret_cast<int*>(ptr)
              << "\033[0m" << endl;
 
-        trans.set_response_status( tlm::TLM_OK_RESPONSE );
+        trans.set_response_status(tlm::TLM_OK_RESPONSE);
     }
 
     void sendResponse(tlm::tlm_generic_payload& trans)

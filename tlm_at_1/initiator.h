@@ -47,7 +47,7 @@ using namespace std;
 
 #define LENGTH 100
 
-class Initiator: sc_module, tlm::tlm_bw_transport_if<>
+class Initiator: public sc_module, public tlm::tlm_bw_transport_if<>
 {
     public:
     // TLM-2 socket, defaults to 32-bits wide, base protocol
@@ -202,11 +202,7 @@ class Initiator: sc_module, tlm::tlm_bw_transport_if<>
     {
         if (trans.is_response_error())
         {
-            char txt[100];
-            sprintf(txt,
-                    "Transaction returned with error, response status = %s",
-                    trans.get_response_string().c_str());
-            SC_REPORT_ERROR(name(), txt);
+            SC_REPORT_ERROR(name(), "Transaction returned with error!");
         }
 
         tlm::tlm_command cmd = trans.get_command();

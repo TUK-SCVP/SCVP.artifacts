@@ -1,4 +1,4 @@
-TARGET = tlm_memory_manager.pro
+TARGET = tlm_protocol_checker
 
 include(../common.pri)
 

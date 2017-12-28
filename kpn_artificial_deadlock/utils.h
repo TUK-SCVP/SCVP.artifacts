@@ -29,6 +29,7 @@
  *
  * Authors:
  *     - Matthias Jung
+ *     - Éder F. Zulian
  */
 
 
@@ -90,7 +91,7 @@ class my_sc_fifo : public sc_fifo<T>
     {
         system("clear");
         std::cout << std::endl << "Kahn Process Network with SystemC" << std::endl;
-        std::cout << "Matthias Jung, Éder Zulian, Mohsin Ghaffar (2017)" << std::endl;
+        std::cout << "Matthias Jung, Éder Zulian (2017)" << std::endl;
 
         std::cout << std::endl << "δ: " << sc_delta_count() << std::endl;
 
