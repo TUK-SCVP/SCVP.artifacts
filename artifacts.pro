@@ -1,6 +1,7 @@
 TEMPLATE = subdirs
 
-SUBDIRS += delta_delay 
+SUBDIRS += delta_delay
+SUBDIRS += tlm_cpu_example
 SUBDIRS += tlm_memory_manager
 SUBDIRS += tlm_protocol_checker
 SUBDIRS += tlm_simple_sockets

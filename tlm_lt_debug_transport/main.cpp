@@ -211,7 +211,6 @@ class exampleTarget : sc_module, tlm::tlm_fw_transport_if<>
         return false;
     }
 
-    // Dummy method
     unsigned int transport_dbg(tlm::tlm_generic_payload& trans)
     {
         if (trans.get_address() >= 1024)

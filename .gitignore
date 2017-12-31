@@ -50,3 +50,8 @@ tlm_at_1/tlm_at_1
 tlm_at_2/tlm_at_2
 tlm_at_3/tlm_at_3
 tlm_at_4/tlm_at_4
+tlm_at_backpressure/tlm_at_backpressure
+tlm_cpu_example/README
+tlm_cpu_example/test.asm.bin
+tlm_cpu_example/tlm_cpu_example
+tlm_protocol_checker/tlm_protocol_checker
