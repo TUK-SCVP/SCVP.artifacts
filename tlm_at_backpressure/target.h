@@ -272,10 +272,11 @@ class Target: public sc_module, public tlm::tlm_fw_transport_if<>
             // The timing annotation must be honored
             peq.notify( trans, bw_phase, delay);
         }
-        else if (status == tlm::TLM_COMPLETED)
+        else if (status == tlm::TLM_COMPLETED) // [3.1]
         {
-            SC_REPORT_FATAL(name(),
-                            "This transition is deprecated since TLM2.0.1");
+            // The initiator has terminated the transaction
+            transactionInProgress = 0;
+            responseInProgress = false;
         }
         // In the case of TLM_ACCEPTED [1.5] we will recv. a FW call [1.6]
 

@@ -45,7 +45,7 @@ using namespace sc_core;
 using namespace sc_dt;
 using namespace std;
 
-#define LENGTH 100
+#define LENGTH 1024
 
 class Initiator: public sc_module, public tlm::tlm_bw_transport_if<>
 {
@@ -85,7 +85,7 @@ class Initiator: public sc_module, public tlm::tlm_bw_transport_if<>
         // Generate a sequence of random transactions
         for (int i = 0; i < LENGTH; i++)
         {
-            int adr = i;
+            int adr = rand();
             tlm::tlm_command cmd = static_cast<tlm::tlm_command>(rand() % 2);
             if (cmd == tlm::TLM_WRITE_COMMAND) data[i % 16] = adr;
 

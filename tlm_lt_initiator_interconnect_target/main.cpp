@@ -245,9 +245,6 @@ class exampleInterconnect : sc_module,
             // Correct Address:
             trans.set_address(trans.get_address() - 512);
             iSocket[1]->b_transport(trans, delay);
-
-            // Correct Address:
-            trans.set_address(trans.get_address() + 512);
         }
     }
 
