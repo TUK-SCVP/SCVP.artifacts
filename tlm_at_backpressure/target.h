@@ -275,7 +275,7 @@ class Target: public sc_module, public tlm::tlm_fw_transport_if<>
         else if (status == tlm::TLM_COMPLETED) // [3.1]
         {
             // The initiator has terminated the transaction
-            transactionInProgress = 0;
+            numberOfTransactions--;
             responseInProgress = false;
         }
         // In the case of TLM_ACCEPTED [1.5] we will recv. a FW call [1.6]

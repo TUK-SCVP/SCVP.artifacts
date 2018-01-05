@@ -5,6 +5,7 @@ SUBDIRS += tlm_cpu_example
 SUBDIRS += tlm_memory_manager
 SUBDIRS += tlm_protocol_checker
 SUBDIRS += tlm_simple_sockets
+SUBDIRS += tlm_multipasstrough_sockets
 SUBDIRS += tlm_at_1
 SUBDIRS += tlm_at_2
 SUBDIRS += tlm_at_3

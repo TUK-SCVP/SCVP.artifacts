@@ -55,3 +55,4 @@ tlm_cpu_example/README
 tlm_cpu_example/test.asm.bin
 tlm_cpu_example/tlm_cpu_example
 tlm_protocol_checker/tlm_protocol_checker
+tlm_multipasstrough_sockets/tlm_multipasstrough_sockets

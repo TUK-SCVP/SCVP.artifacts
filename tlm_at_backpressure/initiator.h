@@ -39,7 +39,7 @@
 #include "tlm_utils/peq_with_cb_and_phase.h"
 #include "../tlm_memory_manager/memory_manager.h"
 #include "../tlm_protocol_checker/tlm2_base_protocol_checker.h"
-#include "util.h"
+#include "../tlm_at_1/util.h"
 
 using namespace sc_core;
 using namespace sc_dt;

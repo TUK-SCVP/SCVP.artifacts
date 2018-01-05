@@ -9,6 +9,6 @@ HEADERS += cpu.h
 HEADERS += memory.h
 SOURCES += main.cpp
 
-DISTFILES += \
-    README \
-    assembler.pl
+DISTFILES += README
+DISTFILES += assembler.pl
+DISTFILES += test.asm

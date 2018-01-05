@@ -41,6 +41,8 @@
 // Convenience Sockets:
 #include "tlm_utils/simple_initiator_socket.h"
 #include "tlm_utils/simple_target_socket.h"
+#include "tlm_utils/multi_passthrough_initiator_socket.h"
+#include "tlm_utils/multi_passthrough_target_socket.h"
 
 // PEQ:
 #include "tlm_utils/peq_with_cb_and_phase.h"
@@ -504,27 +506,17 @@ SC_MODULE(Target)
     }
 };
 
-template<unsigned int I, unsigned int T>
 SC_MODULE(Interconnect)
 {
     public:
-    tlm_utils::simple_target_socket_tagged<Interconnect> tSocket[T];
-    tlm_utils::simple_initiator_socket_tagged<Interconnect> iSocket[I];
+    tlm_utils::multi_passthrough_target_socket<Interconnect> tSocket;
+    tlm_utils::multi_passthrough_initiator_socket<Interconnect> iSocket;
 
-    SC_CTOR(Interconnect)
+    SC_CTOR(Interconnect) : tSocket("tSocket"), iSocket("iSocket")
     {
-        for(unsigned int i = 0; i < T; i++)
-        {
-            //tSocket[i] = new tlm_utils::simple_target_socket_tagged<Interconnect>("tSocket");
-            tSocket[i].register_b_transport(this, &Interconnect::b_transport, i);
-            tSocket[i].register_nb_transport_fw(this, &Interconnect::nb_transport_fw, i);
-        }
-
-        for(unsigned int i = 0; i < I; i++)
-        {
-            //iSocket[i] = new tlm_utils::simple_initiator_socket_tagged<Interconnect>("iSocket");
-            iSocket[i].register_nb_transport_bw(this, &Interconnect::nb_transport_bw, i);
-        }
+        tSocket.register_b_transport(this, &Interconnect::b_transport);
+        tSocket.register_nb_transport_fw(this, &Interconnect::nb_transport_fw);
+        iSocket.register_nb_transport_bw(this, &Interconnect::nb_transport_bw);
     }
 
     private:
@@ -575,7 +567,6 @@ SC_MODULE(Interconnect)
                               tlm::tlm_generic_payload& trans,
                               sc_time& delay )
     {
-        sc_assert(id < T);
         int outPort = routeFW(id, trans, false);
         iSocket[outPort]->b_transport(trans, delay);
     }
@@ -586,7 +577,6 @@ SC_MODULE(Interconnect)
                                                 tlm::tlm_phase& phase,
                                                 sc_time& delay )
     {
-        sc_assert(id < T);
         int outPort = 0;
 
         if(phase == tlm::BEGIN_REQ)
@@ -634,7 +624,6 @@ SC_MODULE(Interconnect)
                                                 tlm::tlm_phase& phase,
                                                 sc_time& delay )
     {
-        sc_assert(id < I);
         sc_assert(id == fwRoutingTable[&trans]);
 
         int inPort = bwRoutingTable[&trans];
@@ -653,12 +642,12 @@ int sc_main (int __attribute__((unused)) sc_argc,
     Target * memory1   = new Target("M1");
     Target * memory2   = new Target("M2");
 
-    Interconnect<2,2> * bus = new Interconnect<2,2>("B1");
+    Interconnect * bus = new Interconnect("B1");
 
-    cpu1->iSocket.bind(bus->tSocket[0]);
-    cpu2->iSocket.bind(bus->tSocket[1]);
-    bus->iSocket[0].bind(memory1->tSocket);
-    bus->iSocket[1].bind(memory2->tSocket);
+    cpu1->iSocket.bind(bus->tSocket);
+    cpu2->iSocket.bind(bus->tSocket);
+    bus->iSocket.bind(memory1->tSocket);
+    bus->iSocket.bind(memory2->tSocket);
 
     sc_start();
 
