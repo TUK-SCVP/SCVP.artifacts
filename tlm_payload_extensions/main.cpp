@@ -43,8 +43,8 @@
 #include "tlm_utils/multi_passthrough_target_socket.h"
 
 #include "../tlm_memory_manager/memory_manager.h"
-#include "../tlm_at_1/initiator.h"
-#include "../tlm_at_1/target.h"
+#include "../tlm_multipasstrough_sockets/initiator.h"
+#include "../tlm_multipasstrough_sockets/target.h"
 
 using namespace std;
 
@@ -220,10 +220,10 @@ int sc_main (int __attribute__((unused)) sc_argc,
 
     Interconnect * bus = new Interconnect("B1");
 
-    cpu1->socket.bind(bus->tSocket);
-    cpu2->socket.bind(bus->tSocket);
-    bus->iSocket.bind(memory1->socket);
-    bus->iSocket.bind(memory2->socket);
+    cpu1->iSocket.bind(bus->tSocket);
+    cpu2->iSocket.bind(bus->tSocket);
+    bus->iSocket.bind(memory1->tSocket);
+    bus->iSocket.bind(memory2->tSocket);
 
     sc_start();
 
