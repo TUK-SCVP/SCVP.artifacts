@@ -35,7 +35,7 @@
 
 #ifndef UTILS_H
 #define UTILS_H
-#include<systemc.h>
+#include <systemc.h>
 #include <sysc/communication/sc_fifo.h>
 
 template <class T>

@@ -34,7 +34,7 @@
 
 #include "kpn.h"
 #include <unistd.h>
-#include <utils.h>
+#include "utils.h"
 
 
 void kpn::p1()

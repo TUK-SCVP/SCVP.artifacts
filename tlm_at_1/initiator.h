@@ -35,8 +35,8 @@
 #define INITIATOR_H
 #include <iomanip>
 #include <systemc>
-#include "tlm.h"
-#include "tlm_utils/peq_with_cb_and_phase.h"
+#include <tlm.h>
+#include <tlm_utils/peq_with_cb_and_phase.h>
 #include "../tlm_memory_manager/memory_manager.h"
 #include "../tlm_protocol_checker/tlm2_base_protocol_checker.h"
 #include "util.h"

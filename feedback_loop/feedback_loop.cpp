@@ -31,7 +31,7 @@
  *     - Matthias Jung
  */
 
-#include "systemc.h"
+#include <systemc.h>
 #include <unistd.h>
 
 SC_MODULE(rslatch)
