@@ -32,8 +32,8 @@
  */
 
 #include <iostream>
-#include <memory.h>
-#include <cpu.h>
+#include "memory.h"
+#include "cpu.h"
 
 using namespace std;
 

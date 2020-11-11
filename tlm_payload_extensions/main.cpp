@@ -39,8 +39,8 @@
 #include <queue>
 
 // Convenience Sockets:
-#include "tlm_utils/multi_passthrough_initiator_socket.h"
-#include "tlm_utils/multi_passthrough_target_socket.h"
+#include <tlm_utils/multi_passthrough_initiator_socket.h>
+#include <tlm_utils/multi_passthrough_target_socket.h>
 
 #include "../tlm_memory_manager/memory_manager.h"
 #include "../tlm_multipasstrough_sockets/initiator.h"

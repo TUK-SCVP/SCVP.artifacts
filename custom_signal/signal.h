@@ -1,6 +1,8 @@
 #ifndef SIGNAL_H
 #define SIGNAL_H
 
+#include <systemc.h>
+
 template <class T>
 class SignalInterface : public sc_interface
 {

@@ -39,14 +39,14 @@
 #include <queue>
 
 // Convenience Sockets:
-#include "tlm_utils/simple_initiator_socket.h"
-#include "tlm_utils/simple_target_socket.h"
+#include <tlm_utils/simple_initiator_socket.h>
+#include <tlm_utils/simple_target_socket.h>
 
 // PEQ:
-#include "tlm_utils/peq_with_cb_and_phase.h"
+#include <tlm_utils/peq_with_cb_and_phase.h>
 
 // MM and tools:
-#include "../tlm_at_1/util.h";
+#include "../tlm_at_1/util.h"
 #include "../tlm_memory_manager/memory_manager.h"
 
 // Internal Phase for transaction processing:

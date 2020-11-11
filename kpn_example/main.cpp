@@ -1,6 +1,6 @@
 #include <systemc.h>
 #include <iostream>
-#include <kpn.h>
+#include "kpn.h"
 
 using namespace std;
 

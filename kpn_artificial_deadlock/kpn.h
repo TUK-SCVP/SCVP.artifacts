@@ -36,7 +36,7 @@
 #define KPN_H
 
 #include <systemc.h>
-#include <utils.h>
+#include "utils.h"
 
 
 // This KPN consists of three Processes and three FIFOs. P3 reads very often
