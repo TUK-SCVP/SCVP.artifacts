@@ -35,8 +35,10 @@
 
 #ifndef UTILS_H
 #define UTILS_H
+
 #include <systemc.h>
 #include <sysc/communication/sc_fifo.h>
+#include <unistd.h>
 
 template <class T>
 class my_sc_fifo : public sc_fifo<T>
