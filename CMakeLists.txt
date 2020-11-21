@@ -1,4 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 project(SCVP_Artifacts)
 
@@ -7,7 +9,13 @@ find_library(SYSTEMC_LIBRARY
     PATHS $ENV{SYSTEMC_HOME}/lib-$ENV{SYSTEMC_TARGET_ARCH}/
 )
 
+find_library(SYSTEMC_AMS_LIBRARY 
+    NAMES systemc-ams
+    PATHS $ENV{SYSTEMC_AMS_HOME}/lib-$ENV{SYSTEMC_TARGET_ARCH}/
+)
+
 set(SYSTEMC_INCLUDE $ENV{SYSTEMC_HOME}/include)
+set(SYSTEMC_AMS_INCLUDE $ENV{SYSTEMC_AMS_HOME}/include)
 
 add_subdirectory(callbacks)
 add_subdirectory(clock_generator)
@@ -48,3 +56,6 @@ add_subdirectory(tlm_payload_extensions)
 add_subdirectory(tlm_protocol_checker)
 add_subdirectory(tlm_quantum_keeper)
 add_subdirectory(tlm_simple_sockets)
+add_subdirectory(ams-eln)
+add_subdirectory(ams-eln2)
+add_subdirectory(ams-tdf)
