@@ -7,7 +7,7 @@
 SCA_TDF_MODULE(mixer)
 {
     public:
-    sca_tdf::sca_in<bool> inBinary;
+    sca_tdf::sca_de::sca_in<bool> inBinary;
     sca_tdf::sca_in<double> inCarrier;
     sca_tdf::sca_out<double> out;
 

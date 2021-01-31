@@ -4,14 +4,21 @@
 #include <systemc.h>
 #include <systemc-ams.h>
 
-SCA_TDF_MODULE(bit_src)
-{
-    sca_tdf::sca_out<bool> out;
+SC_MODULE(bit_src) {
+    sc_core::sc_out<bool> out;
 
-    SCA_CTOR(bit_src) : out("out") {}
+    SC_CTOR(bit_src): out("out")
+    {
+        SC_THREAD(process);
+    }
 
-    void processing() {
-        out.write((bool)(std::rand()%2));
+    void process()
+    {
+        while(true) {
+            bool var = (bool)(std::rand()%2);
+            out.write(var);
+            sc_core::wait(5, sc_core::SC_MS);
+        }
     }
 };
 

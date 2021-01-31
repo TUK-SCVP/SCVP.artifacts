@@ -46,7 +46,7 @@ SC_MODULE(consumer)
     // Thats the short way of writing it:
     sc_fifo_in<unsigned int> fifo_port;
 
-    SC_CTOR(consumer)
+    SC_CTOR(consumer) : clk("clk"), fifo_port("fifo_in")
     {
         SC_THREAD(process);
         dont_initialize();

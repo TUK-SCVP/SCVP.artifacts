@@ -47,7 +47,7 @@ SC_MODULE(producer)
     sc_port< sc_fifo_out_if< unsigned int > > fifo_port;
     unsigned int counter;
 
-    SC_CTOR(producer) : counter(1)
+    SC_CTOR(producer) : counter(1), clk("clk"), fifo_port("fifo_out")
     {
         SC_THREAD(process);
         dont_initialize();
