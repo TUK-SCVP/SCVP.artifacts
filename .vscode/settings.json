@@ -1,6 +1,2 @@
 {
-    "cmake.configureEnvironment" : {
-        "SYSTEMC_HOME" : "/opt/systemc",
-        "SYSTEMC_TARGET_ARCH" : "macosx64",
-    }
 }
